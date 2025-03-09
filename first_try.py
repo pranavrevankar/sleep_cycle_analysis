@@ -35,7 +35,7 @@ df_agg, df_eb, df_no = load_data()
 #build dashboard
 
 add_sidebar = st.sidebar.selectbox("Let's analyse Sleep", 
-                                   ("Aggregate metrics","Early Birds","Night owls","How's my sleep?"))
+                                   ("Aggregate metrics","Early Birds","Night owls","How's my sleep?","test"))
 
 
 ## Aggregate dashboard
@@ -93,8 +93,6 @@ if add_sidebar == 'Night owls':
     st.dataframe(data=df_no)
 
 if add_sidebar == "How's my sleep?":
-
-
     today_10pm = datetime.combine(datetime.today(), datetime.min.time()) + timedelta(
     hours=22
     )
@@ -110,8 +108,15 @@ if add_sidebar == "How's my sleep?":
     value=(today_10pm, tomorrow_6am)
     )
     st.write("So you sleep around ", (sleep_time[1]-sleep_time[0]).seconds/3600, " hours")
+  
+if add_sidebar == "test":
+    st.header('Line chart')
     
+    chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns=['a', 'b', 'c'])
     
+    st.line_chart(chart_data)
     
 
             
