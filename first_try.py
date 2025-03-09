@@ -109,7 +109,7 @@ if add_sidebar == "How's my sleep?":
     format="hh:mm",
     value=(today_10pm, tomorrow_6am)
     )
-    st.write("So you sleep around 45", (sleep_time[1]-sleep_time[0]).seconds/3600, " hours")
+    st.write("So you sleep around ", (sleep_time[1]-sleep_time[0]).seconds/3600, " hours")
     
     
     
