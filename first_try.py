@@ -93,18 +93,25 @@ if add_sidebar == 'Night owls':
     st.dataframe(data=df_no)
 
 if add_sidebar == "How's my sleep?":
-    col1,col2 = st.columns(2)
-    with col1:    
-        sleep_start_time = st.time_input("When do you sleep", time(22, 00))
-        st.write("You sleep at", sleep_start_time)
-        
-    with col2: 
-        sleep_end_time = st.time_input("When do you wake up", time(6, 00))
-        st.write("You wake up at", sleep_end_time)
-    st.write(type(sleep_start_time))
+
+
+    today_10pm = datetime.combine(datetime.today(), datetime.min.time()) + timedelta(
+    hours=22
+    )
+    tomorrow_6am = datetime.combine(datetime.today(), datetime.min.time()) + timedelta(
+    days=1, hours=6
+    )
+
+    sleep_time = st.slider(
+    "Choose your sleep time:",
+    min_value=(today_10pm),
+    max_value=(tomorrow_6am),
+    format="hh:mm",
+    value=(today_10pm, tomorrow_6am)
+    )
+    st.write("So you sleep around ", (sleep_time[1]-sleep_time[0]).seconds/3600, " hours")
     
-    st.write("Hello Piyu")
     
     
-    st.write("Your total sleep time is",total_sleep_time)
+
             
